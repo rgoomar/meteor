@@ -48,9 +48,8 @@ Tinytest.add("spacebars-tests - template_tests - simple helper", function (test)
   // Test that `{{foo bar}}` throws if `foo` is missing or not a function.
   var tmpl2 = copyTemplate(baseTmpl);
   tmpl2.helpers({foo: 3});
-  test.throws(function () {
-    renderToDiv(tmpl2);
-  }, /Can't call non-function/);
+  div = renderToDiv(tmpl2);
+  test.equal(canonicalizeHtml(div.innerHTML), '');
 
   var tmpl3 = copyTemplate(baseTmpl);
   test.throws(function () {
@@ -80,9 +79,8 @@ Tinytest.add("spacebars-tests - template_tests - simple helper", function (test)
   Tracker.flush();
   test.equal(canonicalizeHtml(div.innerHTML), "125");
 
-  test.throws(function () {
-    renderToDiv(tmpl5, {foo: 3});
-  }, /Can't call non-function/);
+  div = renderToDiv(tmpl5, {foo: 3});
+  test.equal(canonicalizeHtml(div.innerHTML), '');
 
   test.throws(function () {
     renderToDiv(tmpl5, {foo: null});

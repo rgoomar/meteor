@@ -133,7 +133,7 @@ Spacebars.call = function (value/*, args*/) {
     return value.apply(null, newArgs);
   } else {
     if (arguments.length > 1)
-      throw new Error("Can't call non-function: " + value);
+      return;
 
     return value;
   }
